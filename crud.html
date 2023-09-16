@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Servicios web</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script>
+        // Función para mostrar u ocultar formularios según la acción seleccionada
+        function toggleForm(action) {
+            const forms = document.querySelectorAll(".dynamic-form");
+
+            forms.forEach(form => {
+                if (form.getAttribute("data-action") === action) {
+                    form.style.display = "block";
+                } else {
+                    form.style.display = "none";
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <button type="button" onclick="toggleForm('creaContacto')">Crear Nuevo Contacto</button>
+    <button type="button" onclick="toggleForm('buscarContacto')">Buscar Contacto</button>
+    <button type="button" onclick="toggleForm('mostrarTodosContactos')">Mostrar Todos los Contactos</button>
+    <button type="button" onclick="toggleForm('actualizarContacto')">Actualizar Contacto</button>
+    <button type="button" onclick="toggleForm('eliminarContacto')">Eliminar Contacto</button>
+
+    <div class="form-container">
+        <!-- Formulario para "Crear Nuevo Contacto" -->
+        <form action="clientemysql.php" method="post" class="dynamic-form" data-action="creaContacto">
+            <h2>Crear Nuevo Contacto</h2>
+            Nombre: <input type="text" name="nombre" /><br/>
+            Apellido: <input type="text" name="apellido" /><br/>
+            Dirección: <input type="text" name="direccion" /><br/>
+            <input type="text" name="funcion" value="creaContacto" hidden />
+            <input type="submit" value="Crear Nuevo Contacto" />
+        </form>
+
+        <!-- Formulario para "Buscar Contacto" -->
+        <form action="clientemysql.php" method="post" class="dynamic-form" data-action="buscarContacto">
+            <h2>Buscar Contacto</h2>
+            Nombre: <input type="text" name="nombre" />
+            <input type="text" name="funcion" value="buscarContacto" hidden />
+            <input type="submit" value="Buscar Contacto" />
+        </form>
+
+        <!-- Formulario para "Mostrar Todos los Contactos" -->
+        <form action="clientemysql.php" method="post" class="dynamic-form" data-action="mostrarTodosContactos">
+            <h2>Mostrar Todos los Contactos</h2>
+            <input type="text" name="funcion" value="mostrarTodosContactos" hidden />
+            <input type="submit" value="Mostrar Todos los Contactos" />
+        </form>
+
+        <!-- Formulario para "Actualizar Contacto" -->
+        <form action="clientemysql.php" method="post" class="dynamic-form" data-action="actualizarContacto">
+            <h2>Actualizar Contacto</h2>
+            ID del Contacto: <input type="text" name="id" /><br/>
+            Nuevo Nombre: <input type="text" name="nombre" /><br/>
+            Nuevo Apellido: <input type="text" name="apellido" /><br/>
+            Nueva Dirección: <input type="text" name="direccion" /><br/>
+            <input type="text" name="funcion" value="actualizarContacto" hidden />
+            <input type="submit" value="Actualizar Contacto" />
+        </form>
+
+        <!-- Formulario para "Eliminar Contacto" -->
+        <form action="clientemysql.php" method="post" class="dynamic-form" data-action="eliminarContacto">
+            <h2>Eliminar Contacto</h2>
+            ID del Contacto a Eliminar: <input type="text" name="id" /><br/>
+            <input type="text" name="funcion" value="eliminarContacto" hidden />
+            <input type="submit" value="Eliminar Contacto" />
+        </form>
+    </div>
+</body>
+</html>
+
+
